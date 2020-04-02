@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name ="ExpediaHome Test">
+<suite name ="Selenium Web Element Test">
     <!--parameter name="site_url" value="https://www.expedia.ca/"></parameter-->
     <!--parameter name="site_url" value="https://ca.hotels.com/"></parameter-->
-    <parameter name="site_url" value="https://pragra.co/sel.html"></parameter>
-    <test name="Home">
+
+    <test name="testcase1">
+        <parameter name="site_url" value="https://pragra.co/sel.html"></parameter>
         <classes>
             <!--class name="co.pragra.testing.ExpediaHomeTest"></class-->
-            <!--class name="co.pragra.testing.HotelComTest"></class-->
-            <class name="co.pragra.testing.PragraTest"></class>
+            <class name="co.pragra.testing.HotelComTest"></class>
+            <!--class name="co.pragra.testing.PragraTest"></class-->
         </classes>
     </test>
 </suite>

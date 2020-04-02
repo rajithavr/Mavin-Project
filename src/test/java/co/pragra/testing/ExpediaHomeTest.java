@@ -19,11 +19,12 @@ public class ExpediaHomeTest {
     @BeforeSuite
     public void setUp() {
        System.setProperty("webdriver.chrome.driver","/work/chromedriver.exe");
+        driver =new ChromeDriver();
     }
     @Test
     @Parameters("site_url")
-     public void testOpenBrowser(String url) throws InterruptedException {
-       driver =new ChromeDriver();
+     public void testcase1(String url) throws InterruptedException {
+
        driver.get(url);
        //driver.get("https://www.expedia.ca/");
        System.out.println(driver.getCurrentUrl());

@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class HotelComTest {
     WebDriver driver;
@@ -22,35 +23,38 @@ public class HotelComTest {
     @BeforeSuite
     public void setUp() {
         System.setProperty("webdriver.chrome.driver","/work/chromedriver.exe");
+        driver = new ChromeDriver();
     }
     @Test
     @Parameters("site_url")
-    public void testOpenBrowser() throws InterruptedException {
-        driver = new ChromeDriver();
-       // driver.get("https://pragra.co/sel.html");
 
-       // WebDriverWait driverWait =new WebDriverWait(driver,200,500);
-//
-       /// WebElement button =driver.findElement(By.id("dblclik"));
-      //  button.click();
-      //  driverWait.until(ExpectedConditions.textToBe(By.xpath("//span[@id='msg']"),"Just Double Clicked"));
+    public void testcase1(String url) throws InterruptedException {
+        driver.get(url);
 
+        WebElement searchInput=driver.findElement(By.xpath("//input[@id='qf-0q-destination']"));
+            //waits
+        //implicit wait(applies on driver),,fluent wait
+       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //it ll keep putting wait for everyelement but better than thread.sleep
 
-        WebElement searchInput=driver.findElement(By.xpath("//input[@id='qf-0q-destination']")); //driver.findElement(By.id("qf-0q-destination"));
-        searchInput.sendKeys("Austin");
+        //explicit wait
+        WebDriverWait driverWait =new WebDriverWait(driver,10);
 
-       // WebElement choice =driverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#citysqm-asi0-s2>td>div:nth"))
+        //driver.findElement(By.id("qf-0q-destination"));
+        //searchInput.sendKeys("Austin", Keys.SPACE,"Texas");
+        //searchInput.sendKeys(Keys.ESCAPE);
+        //searchInput.clear();// its clears wht is written..
 
+        searchInput.sendKeys("regina");
+        WebElement choice =  driverWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#citysqm-asi0-s2>td>div:nth-child(2)")));
+        //WebElement choice =driver.findElement(By.cssSelector("#citysqm-asi0-s2>td>div:nth-child(2)"));
+        choice.click();
 
         WebElement link= driver.findElement(By.id("hdr-gift-card"));
-        link.click(); //it clicks the link
-        link. submit(); //nothing happens submit can be given in a form or whenver we try to submit the form
-        driver.findElement(By.xpath("//form[@class='cont-bd']")).submit();  //form tries to submit the page.
+        //link.click(); //it clicks the link
+        //link. submit(); //nothing happens submit can be given in a form or whenver we try to submit the form
+       // driver.findElement(By.xpath("//form[@class='cont-bd']")).submit();  //form tries to submit the page.
 
-        //searchInput.sendKeys("Austin", Keys.SPACE,"Texas");
-       // searchInput.sendKeys(Keys.ESCAPE);
-        //Thread.sleep(2000);
-        //searchInput.clear();// its clears wht is written..
     }
 
     @AfterMethod
